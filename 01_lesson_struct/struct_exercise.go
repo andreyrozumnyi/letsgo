@@ -13,7 +13,7 @@ type worker struct {
 
 type softwareEngineer struct {
 	worker
-	MainTechnology string `json:"main_technology"`
+	Stack []string `json:"stack"`
 }
 
 type teacher struct {
@@ -37,5 +37,4 @@ type doctor struct {
 }
 
 func main() {
-
 }
