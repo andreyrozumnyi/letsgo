@@ -1,38 +1,38 @@
 package main
 
-type Human struct {
+type human struct {
 	Age int
 }
 
-type Worker struct {
-	Human
+type worker struct {
+	human
 	YearsOfExperience int
 	Salary            int
 	Company           string
 }
 
-type SoftwareEngineer struct {
-	Worker
+type softwareEngineer struct {
+	worker
 	MainTechnology string `json:"main_technology"`
 }
 
-type Teacher struct {
-	Worker
+type teacher struct {
+	worker
 	Subject string `json:"subject"`
 }
 
-type Driver struct {
-	Worker
+type driver struct {
+	worker
 	Category string `json:"license_category"`
 }
 
-type Lawyer struct {
-	Worker
+type lawyer struct {
+	worker
 	Specialty string `json:"specialty"`
 }
 
-type Doctor struct {
-	Worker
+type doctor struct {
+	worker
 	Specialty string `json:"specialty"`
 }
 
