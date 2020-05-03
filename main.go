@@ -3,59 +3,79 @@ package main
 import "fmt"
 
 type human struct {
-	Age int
+	Age       int
+	FirstName string
+	LastName  string
+}
+
+func (h *human) getFullName() string {
+	return h.FirstName + " " + h.LastName
+}
+
+func (h *human) introduce() {
+	fmt.Println("Hi! I am ", h.getFullName())
+}
+
+func (h *human) meditate() {
+	fmt.Println("I am", h.getFullName(), "starting to breath slowly...")
 }
 
 type worker struct {
-	human
+	*human
 	YearsOfExperience int
 	Salary            int
 	Company           string
 }
 
 type softwareEngineer struct {
-	worker
+	*worker
 	Stack []string `json:"stack"`
 }
 
 type teacher struct {
-	worker
+	*worker
 	Subject string `json:"subject"`
 }
 
 type driver struct {
-	worker
+	*worker
 	Category string `json:"license_category"`
 }
 
 type lawyer struct {
-	worker
+	*worker
 	Specialty string `json:"specialty"`
 }
 
 type doctor struct {
-	worker
+	*worker
 	Specialty string `json:"specialty"`
 }
 
 func main() {
 	peter := &softwareEngineer{
-		worker: worker{
+		worker: &worker{
 			YearsOfExperience: 5,
 		},
 		Stack: []string{"go", "node.js"},
 	}
+	// will cause panic if uncommented
+	// peter = nil
+	// peter.getFullName()
 	fmt.Println(peter.YearsOfExperience)
 
 	john := &lawyer{
-		worker: worker{
+		worker: &worker{
 			YearsOfExperience: 3,
+			human: &human{
+				FirstName: "John",
+				LastName:  "Doe",
+			},
 		},
 		Specialty: "Corporate",
 	}
 
-	// will cause panic if uncommented
-	// john = nil
-
-	fmt.Println(john.YearsOfExperience)
+	fmt.Println(john.getFullName())
+	john.introduce()
+	john.meditate()
 }
