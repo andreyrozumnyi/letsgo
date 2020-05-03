@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 type human struct {
 	Age int
 }
@@ -37,4 +39,23 @@ type doctor struct {
 }
 
 func main() {
+	peter := &softwareEngineer{
+		worker: worker{
+			YearsOfExperience: 5,
+		},
+		Stack: []string{"go", "node.js"},
+	}
+	fmt.Println(peter.YearsOfExperience)
+
+	john := &lawyer{
+		worker: worker{
+			YearsOfExperience: 3,
+		},
+		Specialty: "Corporate",
+	}
+
+	// will cause panic if uncommented
+	// john = nil
+
+	fmt.Println(john.YearsOfExperience)
 }
